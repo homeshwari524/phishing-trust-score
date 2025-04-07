@@ -1,0 +1,118 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7fa;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 700px;
+    margin: 4rem auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 2rem;
+}
+
+input[type="text"] {
+    width: 60%;
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: #007BFF;
+}
+
+button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.result {
+    font-size: 1.1rem;
+    text-align: left;
+}
+
+.result p {
+    margin: 0.5rem 0;
+    font-size: 1.05rem;
+}
+
+.result strong {
+    color: #333;
+}
+
+.result .feature-title {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #007BFF;
+    margin-top: 1.5rem;
+}
+
+details summary {
+    cursor: pointer;
+    margin: 1rem 0;
+    font-weight: bold;
+    font-size: 1rem;
+    color: #444;
+}
+
+ul {
+    padding-left: 0;
+    list-style: none;
+}
+
+li {
+    background: #f9f9f9;
+    margin: 0.3rem 0;
+    padding: 0.7rem 1rem;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+li span {
+    font-weight: bold;
+}
+
+li span.red {
+    color: red;
+}
+
+li span.green {
+    color: green;
+}
+
+.error {
+    color: red;
+    margin-top: 1rem;
+}

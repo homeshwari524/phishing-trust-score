@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Phishing Trust Score</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+    <h1>🔐 Phishing Trust Score Checker</h1>
+    
+    <form method="POST">
+        <input type="text" name="url" placeholder="Enter a URL" required>
+        <button type="submit">Check Trust Score</button>
+    </form>
+
+    {% if result %}
+    <div class="result" style="color: {{ result.color }}; margin-top: 2rem;">
+        <p><strong>🔗 URL:</strong> {{ result.url }}</p>
+        <p><strong>📊 Score:</strong> {{ result.score }}</p>
+        <p><strong>🧠 Feedback:</strong> {{ result.feedback }}</p>
+
+        {% if result.features %}
+            <h3 style="margin-top: 2rem;">🔍 Feature Analysis</h3>
+            <details>
+            <summary>💡 Show Feature Risk Breakdown</summary>
+            <ul>
+                {% set explanations = {
+                  'having_IP_Address': 'Contains an IP address instead of a domain?',
+                  'URL_Length': 'Is the URL too long?',
+                  'Shortening_Service': 'Uses a shortening service (like bit.ly)?',
+                  'Having_At_Symbol': 'Contains the “@” symbol (which hides the real link)?',
+                  'Double_slash_redirecting': 'Redirects using ‘//’ after domain?',
+                  'Prefix_Suffix': 'Uses a dash (-) in the domain name?',
+                  'SubDomains': 'Has many subdomains?',
+                  'HTTPS_Token': 'Misuses “HTTPS” keyword in the URL?',
+                  'Domain_Age': 'Is the domain recently created?',
+                  'Web_Traffic': 'Has very low web traffic?',
+                  'Iframe': 'Uses invisible iFrames?',
+                  'Mouse_Over': 'Tricks you with fake link text on hover?'
+                } %}
+                {% for key, value in result.features.items() %}
+                <li><strong>{{ explanations[key] if key in explanations else key }}:</strong> 
+                    {% if value == 1 %}
+                        <span style="color: red;">Yes 🚨</span>
+                    {% else %}
+                        <span style="color: green;">No ✅</span>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+            </details>
+        {% endif %}
+    </div>
+    {% endif %}
+
+    {% if error %}
+    <div class="error">
+        <p><strong>Error:</strong> {{ error }}</p>
+    </div>
+    {% endif %}
+</div>
+</body>
+</html>
